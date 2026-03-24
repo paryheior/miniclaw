@@ -1,0 +1,32 @@
+miniclaw:
+  home-dir: ${user.home}/.miniclaw-java
+  bootstrap-enabled: true
+  heartbeat-interval-ms: 60000
+
+spring:
+  ai:
+    dashscope:
+      api-key: ${AI_DASHSCOPE_API_KEY}
+      chat:
+        options:
+          model: qwen-plus
+          temperature: 0.7
+          max-tokens: 2048
+    mcp:
+      server:
+        enabled: true
+        name: miniclaw-java
+        version: 0.0.1
+        type: SYNC
+        stdio: false
+        sse-endpoint: /sse
+        sse-message-endpoint: /mcp/message
+
+server:
+  port: 8080
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
